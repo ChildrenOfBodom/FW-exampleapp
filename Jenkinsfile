@@ -25,7 +25,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        withDockerRegistry(credentialsId:'' 'dockerbuildbot-index.docker.io', url:'') {
+        withDockerRegistry(credentialsId:'dockerhub' 'dockerbuildbot-index.docker.io', url:'') {
           sh 'docker push mineallmine/result'
         }
       }
@@ -35,7 +35,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        withDockerRegistry(credentialsId: 'dockerhub', 'dockerbuildbot-index.docker.io', url:'') {
+        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
           sh 'docker push mineallmine/vote'
         }
       }
