@@ -20,10 +20,34 @@ pipeline {
         sh 'docker build -t dockersamples/worker ./worker'
       }
     }
-       stage('docker-compose') {
-           steps {
-              sh "docker-compose build"
-              sh "docker-compose up -d"
+    stage('Push result image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
+          sh 'docker push dockersamples/result'
+        }
+      }
+    }
+    stage('Push vote image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
+          sh 'docker push dockersamples/vote'
+        }
+      }
+    }
+    stage('Push worker image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
+          sh 'docker push dockersamples/worker'
+        }
       }
     }
   }
