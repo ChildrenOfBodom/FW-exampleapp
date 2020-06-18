@@ -50,10 +50,5 @@ pipeline {
         }
       }
     }
-    stage('run') {
-       steps {
-        sh '/usr/local/bin/docker-compose up -d'
-      }
-    }
   }
 }
