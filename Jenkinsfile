@@ -20,9 +20,9 @@ pipeline {
         sh 'docker build -t dockersamples/worker ./worker'
       }
     }
-       stage('docker-compose') {
+       stage('Deploy') {
            steps {
-              sh "docker-compose up"
+              sh "docker-compose -f docker-compose-simple.yml up"
       }
     }
   }
