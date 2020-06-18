@@ -20,13 +20,12 @@ pipeline {
         sh 'docker build -t dockersamples/worker ./worker'
       }
     }
-    stages {
        stage('docker-compose') {
            steps {
               sh "docker-compose build"
               sh "docker-compose up -d"
-           }
-       }
+      }
+    }
    }    
   }
 }
