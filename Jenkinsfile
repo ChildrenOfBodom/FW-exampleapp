@@ -22,7 +22,7 @@ pipeline {
     }
        stage('Deploy') {
            steps {
-              sh "docker-compose -f docker-compose-simple.yml up"
+              sh "docker-compose -f docker-compose-simple.yml up  --force-recreate"
       }
     }
   }
