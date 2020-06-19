@@ -20,34 +20,9 @@ pipeline {
         sh 'docker build -t dockersamples/worker ./worker'
       }
     }
-    stage('Push result image') {
-      when {
-        branch 'master'
-      }
-      steps {
-        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push mineallmine/result'
-        }
-      }
-    }
-    stage('Push vote image') {
-      when {
-        branch 'master'
-      }
-      steps {
-        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push mineallmine/vote'
-        }
-      }
-    }
-    stage('Push worker image') {
-      when {
-        branch 'master'
-      }
-      steps {
-        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push mineallmine/worker'
-        }
+       stage('Docker-Compose') {
+           steps {
+              sh "docker-compose up -f docker-compose-simple.yml"
       }
     }
   }
