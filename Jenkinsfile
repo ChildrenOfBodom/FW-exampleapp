@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'master'
+      label 'ubuntu-1604-aufs-stable'
     }
   }
   stages {
@@ -26,7 +26,7 @@ pipeline {
       }
       steps {
         withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push mineallmine/result'
+          sh 'docker push dockersamples/result'
         }
       }
     }
@@ -36,7 +36,7 @@ pipeline {
       }
       steps {
         withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push mineallmine/vote'
+          sh 'docker push dockersamples/vote'
         }
       }
     }
@@ -46,7 +46,9 @@ pipeline {
       }
       steps {
         withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
-          sh 'docker push mineallmine/worker'
+          sh 'docker push dockersamples/worker'
         }
       }
     }
+  }
+}
