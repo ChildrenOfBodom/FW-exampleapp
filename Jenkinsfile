@@ -20,10 +20,33 @@ pipeline {
         sh 'docker build -t dockersamples/worker ./worker'
       }
     }
-       stage('Deploy') {
-           steps {
-              sh "docker-compose -f docker-compose-simple.yml up  --force-recreate"
+    stage('Push result image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
+          sh 'docker push mineallmine/result'
+        }
       }
     }
-  }
-}
+    stage('Push vote image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
+          sh 'docker push mineallmine/vote'
+        }
+      }
+    }
+    stage('Push worker image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        withDockerRegistry(credentialsId: 'dockerbuildbot-index.docker.io', url:'') {
+          sh 'docker push mineallmine/worker'
+        }
+      }
+    }
