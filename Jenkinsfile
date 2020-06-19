@@ -15,7 +15,7 @@ pipeline {
         sh 'docker build -t dockersamples/worker ./worker'
       }
     }
-stage('Docker-Compose') {
+    stage('Docker-Compose') {
            steps {
               sh "docker-compose up -f docker-compose-simple.yml"
       }
