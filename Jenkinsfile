@@ -16,11 +16,13 @@ pipeline {
     } 
     stage('Re/Build vote') {
       steps {
+        script {
         sh 'docker images | grep "voting_result" | awk '{print $1}' | xargs docker rmi -f'
         sh 'docker images | grep "voting_vote" | awk '{print $1}' | xargs docker rmi -f'
         sh 'docker build -t dockersamples/vote ./vote'
+        }
       }
-    }
+    } 
     stage('Re/Build worker') {
       steps {
         sh 'docker build -t dockersamples/worker ./worker'
