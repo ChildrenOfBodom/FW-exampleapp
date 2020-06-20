@@ -22,8 +22,8 @@ pipeline {
     }
     stage('Docker-Compose') {
       steps {
-        sh 'docker-compose -f docker-compose-simple.yml down'
-        sh 'docker-compose -f docker-compose-simple.yml up -d'
+        sh 'docker-compose down'
+        sh 'docker-compose up -d'
       }
     }
     stage('Delete old images') {
