@@ -26,5 +26,10 @@ pipeline {
         sh 'docker-compose -f docker-compose-simple.yml up -d'
       }
     }
+    stage('Delete old images') {
+      steps {
+        sh 'docker images -q -f dangling=true | xargs -I ARGS docker rmi -f ARGS'
+      }
+    }
   }
 }
