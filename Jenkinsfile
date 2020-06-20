@@ -7,9 +7,11 @@ pipeline {
   stages {
     stage('Re/Build result') {
       steps {
+        script {
         sh 'docker images | grep "voting_result" | awk '{print $1}' | xargs docker rmi -f'
         sh 'docker images | grep "dockersamples/result" | awk '{print $1}' | xargs docker rmi -f'
         sh 'docker build -t dockersamples/result ./result'
+        }
       }
     } 
     stage('Re/Build vote') {
