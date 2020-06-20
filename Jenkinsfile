@@ -5,17 +5,21 @@ pipeline {
     }
   }
   stages {
-    stage('Build result') {
+    stage('Re/Build result') {
       steps {
+        sh 'docker images | grep "voting_result" | awk '{print $1}' | xargs docker rmi -f'
+        sh 'docker images | grep "dockersamples/result" | awk '{print $1}' | xargs docker rmi -f'
         sh 'docker build -t dockersamples/result ./result'
       }
     } 
-    stage('Build vote') {
+    stage('Re/Build vote') {
       steps {
+        sh 'docker images | grep "voting_result" | awk '{print $1}' | xargs docker rmi -f'
+        sh 'docker images | grep "voting_vote" | awk '{print $1}' | xargs docker rmi -f'
         sh 'docker build -t dockersamples/vote ./vote'
       }
     }
-    stage('Build worker') {
+    stage('Re/Build worker') {
       steps {
         sh 'docker build -t dockersamples/worker ./worker'
       }
