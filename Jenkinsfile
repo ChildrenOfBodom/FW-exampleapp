@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Docker-Compose') {
       steps {
-        sh 'docker-compose down'
+        sh 'docker-compose -f docker-compose-simple.yml down'
         sh 'docker-compose -f docker-compose-simple.yml up -d'
       }
     }
