@@ -20,6 +20,8 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
       
   result:
     build: ./result
@@ -27,3 +29,5 @@ services:
     ports:
       - "5001:80"
       - "5858:5858"
+volumes:
+db-data:
