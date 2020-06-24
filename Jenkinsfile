@@ -27,7 +27,7 @@ pipeline {
     stage('Docker-Compose') {
       steps {
         sh 'docker-compose down'
-        sh 'docker-compose up -d --force-recreate'
+        sh 'docker-compose up -d --build -V'
       }
     }
     stage('Delete old images') {
