@@ -1,5 +1,7 @@
 Пример деплоя приложения (https://github.com/dockersamples/example-voting-app) через jenkins pipeline в docker-compose.
 
+Ansible-playbook для разворачивания Docker'a и Docker-compose - https://github.com/ChildrenOfBodom/FW-exampleapp/blob/master/Ansible/Docker-compose.yml
+
 Pipeline - https://github.com/ChildrenOfBodom/FW-exampleapp/blob/master/Jenkinsfile
 
 Docker-compose - https://github.com/ChildrenOfBodom/FW-exampleapp/blob/master/docker-compose.yml
